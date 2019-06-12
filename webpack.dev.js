@@ -9,7 +9,7 @@ module.exports = merge(common, {
     host: '0.0.0.0',
     port: 3035,
     sockPort: 443,
-    publicPath: 'http://0.0.0.0:3035/public/assets/',
+    publicPath: 'http://0.0.0.0:3035/assets/',
     contentBase: path.resolve(__dirname, 'public/assets/'),
     hot: true,
     disableHostCheck: true,

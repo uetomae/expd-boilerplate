@@ -19,5 +19,13 @@ module App
     config.paths.add Rails.root.join('lib').to_s, eager_load: true
     config.api_only = false
     config.i18n.default_locale = :ja
+    config.time_zone = 'Asia/Tokyo'
+    config.generators do |g|
+      g.assets false
+      g.helper false
+      g.jbuilder false
+      g.template_engine :haml
+      g.test_framework false
+    end
   end
 end

@@ -5,16 +5,16 @@ class WebpackAsset
     delegate :fetch, to: :manifest
 
     def manifest
-      @manifest ||= JSON.parse(Rails.env.development? ? read_manifest_dev : read_manifest)
+      JSON.parse(Rails.env.development? ? read_manifest_dev : read_manifest)
     end
 
     def read_manifest
-      File.read('public/assets/manifest.json')
+      @read_manifest ||= File.read('public/assets/manifest.json')
     end
 
     # :nocov:
     def read_manifest_dev
-      OpenURI.open_uri('http://0.0.0.0:3035/public/assets/manifest.json').read
+      OpenURI.open_uri('http://0.0.0.0:3035/assets/manifest.json').read
     end
     # :nocov:
 

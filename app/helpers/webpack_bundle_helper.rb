@@ -23,11 +23,14 @@ module WebpackBundleHelper
     stylesheet_link_tag '', **options
   end
 
+  def image_path(entry)
+    asset_bundle_path "images/#{entry}"
+  end
+
   private
 
   def asset_bundle_path(entry, **options)
-    asset_base_path = Rails.env.development? ? '/public' : ''
-    asset_base_path += '/assets/'
+    asset_base_path = '/assets/'
     asset_path(asset_base_path + WebpackAsset.fetch(entry), **options)
   end
 

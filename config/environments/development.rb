@@ -52,6 +52,15 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  # Proxy for asset images
-  config.middleware.use ProxyAssetsPath, ssl_verify_none: true
+  # Logging on STDOUT
+  config.logger = Logger.new(STDOUT)
+
+  # Bullet configuration
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rollbar = true
+  end
 end
