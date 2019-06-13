@@ -22,3 +22,6 @@ ask "tfvar_db_pass" "Enter DB password on production environment"
 echo "app_name = \"${tfvar_app_name}\"" > $TFVARS
 echo "db_user = \"${tfvar_db_user}\"" >> $TFVARS
 echo "db_pass = \"${tfvar_db_pass}\"" >> $TFVARS
+
+# Replace app name on main.tf to async tf state on s3
+sed -i -e "s/^\( *key *= *\"expd-\).*\(\.terraform\.tfstate\"\)/\1${tfvar_app_name}\2/g" $PROJECT_DIR/provisioning/main.tf

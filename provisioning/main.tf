@@ -8,8 +8,8 @@ variable "region" { default = "ap-northeast-1" }
 terraform {
   backend "s3" {
     bucket  = "uetomae-expd"
-    key     = "expd-${var.app_name}.terraform.tfstate"
-    region  = "${var.region}"
+    key     = "expd-example.terraform.tfstate"
+    region  = "ap-northeast-1"
   }
 }
 

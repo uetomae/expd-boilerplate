@@ -1,7 +1,3 @@
-variable "app_name" {}
-variable "db_user" {}
-variable "db_pass" {}
-
 resource "aws_db_subnet_group" "rds-subnet-group" {
   name       = "${var.app_name}-rds-subnet-group"
   subnet_ids = ["${aws_subnet.public_a.id}", "${aws_subnet.public_c.id}"]

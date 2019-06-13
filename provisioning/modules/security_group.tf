@@ -1,5 +1,3 @@
-variable "app_name" {}
-
 resource "aws_security_group" "alb" {
   name   = "expd-${var.app_name}-alb-sg"
   vpc_id = "${aws_vpc.expd.id}"
@@ -58,7 +56,7 @@ resource "aws_security_group" "db" {
     to_port   = 3306
     protocol  = "tcp"
     security_groups = [
-      "${aws_security_group.rails.id}",
+      "${aws_security_group.ecs.id}",
     ]
   }
   egress {

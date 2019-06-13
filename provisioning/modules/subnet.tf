@@ -1,9 +1,6 @@
-variable "app_name" {}
-variable "region" {}
-
 resource "aws_subnet" "public_a" {
   availability_zone = "${var.region}a"
-  cidr_block        = "${cidrsubnet(${aws_vpc.expd.cidr_block}, 8, 1)}"
+  cidr_block        = "${cidrsubnet(aws_vpc.expd.cidr_block, 8, 1)}"
   vpc_id            = "${aws_vpc.expd.id}"
   tags = {
     Name    = "expd-${var.app_name}-subnet-public-a"
@@ -13,11 +10,11 @@ resource "aws_subnet" "public_a" {
 
 resource "aws_subnet" "public_c" {
   availability_zone = "${var.region}c"
-  cidr_block        = "${cidrsubnet(${aws_vpc.expd.cidr_block}, 8, 2)}"
+  cidr_block        = "${cidrsubnet(aws_vpc.expd.cidr_block, 8, 2)}"
   vpc_id            = "${aws_vpc.expd.id}"
   tags = {
     Name    = "expd-${var.app_name}-subnet-public-c"
-    Product = "${var.name}"
+    Product = "${var.app_name}"
   }
 }
 

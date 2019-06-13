@@ -1,5 +1,3 @@
-variable "app_name" {}
-
 resource "aws_alb" "alb" {
   name            = "expd-${var.app_name}-alb"
   security_groups = ["${aws_security_group.alb.id}"]
