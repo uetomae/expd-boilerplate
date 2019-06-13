@@ -1,0 +1,5 @@
+#!/bin/bash
+
+PROJECT_DIR=$(cd "$(dirname "$0")"; cd ..; pwd)
+source "$PROJECT_DIR/.awscredentials"
+docker run -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION -e TF_VAR_access_key=$AWS_ACCESS_KEY_ID -e TF_VAR_secret_key=$AWS_SECRET_ACCESS_KEY -e TF_VAR_region=$AWS_DEFAULT_REGION -v ${PROJECT_DIR}/provisioning:/app/ -w /app/ hashicorp/terraform:light $@

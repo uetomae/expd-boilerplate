@@ -2,7 +2,7 @@
 
 module BulmaTableHelper
   def table_for(collection, options = {})
-    tbl = HelperModel::HtmlTable.new(collection)
+    tbl = HelperModels::HtmlTable.new(collection)
     yield tbl
     options = {
       class: %w[table is-striped]

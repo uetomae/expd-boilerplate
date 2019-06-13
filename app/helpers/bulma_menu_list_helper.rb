@@ -2,7 +2,7 @@
 
 module BulmaMenuListHelper
   def menu_list
-    menu_list = HelperModel::HtmlMenuList.new
+    menu_list = HelperModels::HtmlMenuList.new
     yield menu_list
     list_items = menu_list.items.map do |item|
       is_active = instance_exec(item, &item[:is_active])

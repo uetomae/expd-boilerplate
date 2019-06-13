@@ -1,0 +1,15 @@
+#!/bin/sh
+
+function ask () {
+  VARNAME=$1
+  MSG=$2
+  eval DEFAULT='$'$VARNAME
+  [ -n "$DEFAULT" ] && MSG="$MSG [$DEFAULT]"
+  while :
+  do
+    read -p "$MSG: " ANSWER
+    [ -z "$ANSWER" ] && ANSWER=$DEFAULT
+    [ -n "$ANSWER" ] && break
+  done
+  eval $VARNAME="$ANSWER"
+}

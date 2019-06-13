@@ -1,0 +1,4 @@
+#!/bin/sh
+
+CREATE_TO=$(cd $1; pwd)
+docker run --rm -v $PWD:/usr/src/app -v $CREATE_TO:/usr/src/target -w /usr/src/target expd-boilerplate_web rails new . -m /usr/src/app/template.rb --database=mysql -B -S -J --skip-coffee --skip-turbolink --skip-test

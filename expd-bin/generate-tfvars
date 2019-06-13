@@ -1,0 +1,24 @@
+#!/bin/sh
+
+PROJECT_DIR=$(cd $(dirname $0); cd ..; pwd)
+TFVARS="$PROJECT_DIR/provisioning/terraform.tfvars"
+
+. $PROJECT_DIR/expd-bin/generate-base
+
+if [ -f "$TFVARS" ]; then
+  while read line
+  do
+    ary=($line)
+    eval "tfvar_${ary[0]}=${ary[2]}"
+  done < $TFVARS
+fi
+
+ask "tfvar_app_name" "Enter application id (only lower alphabet, number and hyphen)"
+[ -z "$tfvar_db_user" ] && tfvar_db_user="${tfvar_app_name}_user"
+ask "tfvar_db_user" "Enter DB user on production environment"
+[ -z "$tfvar_db_pass" ] && tfvar_db_pass=$(openssl rand -base64 12 | fold -w 10 | head -1)
+ask "tfvar_db_pass" "Enter DB password on production environment"
+
+echo "app_name = \"${tfvar_app_name}\"" > $TFVARS
+echo "db_user = \"${tfvar_db_user}\"" >> $TFVARS
+echo "db_pass = \"${tfvar_db_pass}\"" >> $TFVARS
