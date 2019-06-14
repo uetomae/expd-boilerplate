@@ -17,16 +17,17 @@ bundler-audit:
 brakeman:
 	@bundle exec brakeman -o /tmp/brakeman-report.html
 
-init-provisioner:
+prov-init:
 	@./expd-bin/generate-tfvars
 	@./expd-bin/generate-awscredentials
 	@./expd-bin/terraform-docker init
 
-provisioning:
+prov:
 	@./expd-bin/terraform-docker apply
+	@./expd-bin/generate-deploy-env
 
-provisioning-plan:
+prov-plan:
 	@./expd-bin/terraform-docker plan
 
-provisioning-destroy:
+prov-destroy:
 	@./expd-bin/terraform-docker destroy
