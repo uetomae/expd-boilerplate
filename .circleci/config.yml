@@ -82,7 +82,9 @@ jobs:
           command: ./.circleci/deployment/bin/install-ecs-cli
       - run:
           name: DB Migration
-          command: ./.circleci/deployment/bin/migrate
+          command: |
+            source ./.circleci/env
+            ./.circleci/deployment/bin/migrate
   
   production-deploy:
     executor:
@@ -99,7 +101,9 @@ jobs:
           command: ./.circleci/deployment/bin/report-deploy production started
       - run:
           name: Rolling update
-          command: ./.circleci/deployment/bin/deploy
+          command: |
+            source ./.circleci/env
+            ./.circleci/deployment/bin/deploy
       - run:
           name: Report deploy to be succeeded
           command: ./.circleci/deployment/bin/report-deploy production succeeded

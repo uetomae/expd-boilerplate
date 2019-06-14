@@ -1,0 +1,8 @@
+export ECS_TARGET_GROUP=
+export ECS_CONTAINER=
+export ECS_SUBNET1=
+export ECS_SUBNET2=
+export ECS_SECURITY_GROUP=
+export MYSQL_HOST=
+export MYSQL_DATABASE=
+export LOG_GROUP=
