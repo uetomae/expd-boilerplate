@@ -27,6 +27,7 @@ MASTER_KEY_FILE=$PROJECT_DIR/config/master.key
 echo "'$DEPLOY_ENV_SECRET' has been generated to set your circleci project."
 
 rm -f $DEPLOY_ENV_FILE
+echo "export APP_NAME=${DEPLOY_ENV_app_name}" >> $DEPLOY_ENV_FILE
 echo "export ECS_CLUSTER=${DEPLOY_ENV_cluster_name}" >> $DEPLOY_ENV_FILE
 echo "export ECS_TARGET_GROUP=${DEPLOY_ENV_target_group}" >> $DEPLOY_ENV_FILE
 echo "export ECS_CONTAINER=${DEPLOY_ENV_container}" >> $DEPLOY_ENV_FILE

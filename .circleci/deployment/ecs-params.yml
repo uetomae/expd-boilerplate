@@ -7,7 +7,7 @@ task_definition:
     cpu_limit: 256
     mem_limit: 512
   services:
-    uetomae-tools-app:
+    expd-app:
       essential: true
 
 run_params:

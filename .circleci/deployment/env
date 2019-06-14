@@ -1,3 +1,4 @@
+export APP_NAME=boilerplate
 export ECS_CLUSTER=expd-boilerplate
 export ECS_TARGET_GROUP=arn:aws:elasticloadbalancing:ap-northeast-1:891347377932:targetgroup/expd-boilerplate-alb-tg/2587e015f0c3b374
 export ECS_CONTAINER=expd-boilerplate-app

@@ -13,7 +13,7 @@ ecs-cli configure --cluster $ECS_CLUSTER --default-launch-type FARGATE --region 
 ecs-cli compose \
   --file .circleci/deployment/app-service.yml \
   --ecs-params .circleci/deployment/ecs-params.yml \
-  --project-name uetomae-tools-${RAILS_ENV}-app \
+  --project-name expd-$APP_NAME-app \
   --cluster-config $ECS_CONFIG \
   service up \
   --target-group-arn $ECS_TARGET_GROUP \

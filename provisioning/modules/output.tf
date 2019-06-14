@@ -1,5 +1,6 @@
 output "deploy-env" {
   value = {
+    app_name       = "${var.app_name}"
     target_group   = "${aws_alb_target_group.alb.arn}"
     cluster_name   = "${aws_ecs_cluster.ecs_cluster.name}"
     container      = "expd-${var.app_name}-app"

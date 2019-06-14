@@ -1,7 +1,7 @@
 ---
 version: "3"
 services:
-  uetomae-tools-app:
+  expd-app:
     image: $CONTAINER_IMAGE:$RAILS_ENV
     command: ['bundle', 'exec', 'puma', '-C', 'config/puma.rb']
     ports:
@@ -12,12 +12,10 @@ services:
       RAILS_LOG_TO_STDOUT: 1
       RAILS_SERVE_STATIC_FILES: 1
       RAILS_MASTER_KEY: $RAILS_MASTER_KEY
-      SECRET_KEY_BASE: $SECRET_KEY_BASE
       MYSQL_HOST: $MYSQL_HOST
       MYSQL_DATABASE: $MYSQL_DATABASE
       MYSQL_USER: $MYSQL_USER
       MYSQL_PASSWORD: $MYSQL_PASSWORD
-      YAHOO_API_CLIENT_ID: $YAHOO_API_CLIENT_ID
       ROLLBAR_ACCESS_TOKEN: $ROLLBAR_ACCESS_TOKEN
     logging:
       driver: awslogs
