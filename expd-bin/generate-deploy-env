@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 PROJECT_DIR=$(cd $(dirname $0); cd ..; pwd)
 TMP_FILE=/tmp/deploy-env.tfvars
 
-$PROJECT_DIR/expd-bin/terraform-docker output | egrep "^ " > $TMP_FILE
+$PROJECT_DIR/expd-bin/terraform-docker output | egrep "^ " | tr -d '\r' > $TMP_FILE
 DEPLOY_ENV_SECRET=$PROJECT_DIR/.deploy-env
 DEPLOY_ENV_FILE=$PROJECT_DIR/.circleci/deployment/env
 while read line

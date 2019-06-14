@@ -13,6 +13,6 @@ ecs-cli configure --cluster $ECS_CLUSTER --default-launch-type FARGATE --region 
 ecs-cli compose \
   --file .circleci/deployment/migrate-service.yml \
   --ecs-params .circleci/deployment/ecs-params.yml \
-  --project-name expd-$APP_NAME-migrate \
+  --project-name expd-${APP_NAME}-migrate \
   --cluster-config $ECS_CONFIG \
   up

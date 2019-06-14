@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PROJECT_DIR=$(cd $(dirname $0); cd ..; pwd)
 TFVARS="$PROJECT_DIR/provisioning/terraform.tfvars"
