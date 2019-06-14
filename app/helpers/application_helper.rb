@@ -7,6 +7,7 @@ module ApplicationHelper
       return value
     end
     return content_for(:title) if content_for?(:title)
+
     t("#{controller.controller_name}.#{controller.action_name}.title", default: t(:site_name))
   end
 

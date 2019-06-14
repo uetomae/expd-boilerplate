@@ -36,6 +36,7 @@ module WebpackBundleHelper
 
   def asset_bundle_path_if_exist(entry, alternative, **options)
     return asset_bundle_path(entry, **options) if WebpackAsset.exist?(entry)
+
     asset_bundle_path(alternative, **options)
   end
 end

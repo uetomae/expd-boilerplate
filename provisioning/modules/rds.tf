@@ -20,6 +20,9 @@ resource "aws_db_instance" "default" {
   apply_immediately          = true
   auto_minor_version_upgrade = true
   vpc_security_group_ids     = ["${aws_security_group.db.id}"]
+  final_snapshot_identifier  = "expd-${var.app_name}-snapshot-${md5(timestamp())}"
+  snapshot_identifier        = "expd-${var.app_name}.snaphost"
+  skip_final_snapshot        = true
 }
 
 resource "aws_db_parameter_group" "default" {

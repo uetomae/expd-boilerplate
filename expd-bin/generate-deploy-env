@@ -15,7 +15,6 @@ rm -f $TMP_FILE
 
 cp $PROJECT_DIR/.awscredentials $DEPLOY_ENV_FILE
 
-echo "export CONTAINER_IMAGE=${DEPLOY_ENV_ecr_url}" >> $DEPLOY_ENV_FILE
 echo "export ECS_CLUSTER=${DEPLOY_ENV_cluster_name}" >> $DEPLOY_ENV_FILE
 echo "export ECS_TARGET_GROUP=${DEPLOY_ENV_target_group}" >> $DEPLOY_ENV_FILE
 echo "export ECS_CONTAINER=${DEPLOY_ENV_container}" >> $DEPLOY_ENV_FILE

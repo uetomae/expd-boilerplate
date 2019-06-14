@@ -8,7 +8,7 @@ module HelperModel
       @items = []
       @default_options = {
         link_params: {},
-        is_active: ->(item) {
+        is_active: lambda { |item|
           item[:controller] == params[:controller].to_sym && item[:action] == params[:action].to_sym
         }
       }
@@ -16,7 +16,7 @@ module HelperModel
 
     def item(label, controller, action, options = {})
       options = @default_options.deep_merge(options)
-      detect_active_proc = ->(item) {
+      detect_active_proc = lambda { |item|
         item[:controller] == params[:controller].to_sym && item[:action] == params[:action].to_sym
       }
       @items << {

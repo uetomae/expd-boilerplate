@@ -1,0 +1,18 @@
+#!/bin/sh
+set -ex
+
+if [ -z "$ECS_CLUSTER" ]; then
+  echo "No ecs_cluster set"
+  exit
+fi
+
+ECS_CONFIG=$ECS_CLUSTER-config
+
+ecs-cli configure --cluster $ECS_CLUSTER --default-launch-type FARGATE --region $AWS_REGION --config-name $ECS_CONFIG
+
+ecs-cli compose \
+  --file .circleci/deployment/migrate-service.yml \
+  --ecs-params .circleci/deployment/ecs-params.yml \
+  --project-name uetomae-tools-${RAILS_ENV}-migrate \
+  --cluster-config $ECS_CONFIG \
+  up

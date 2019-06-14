@@ -41,7 +41,7 @@ module HelperModel
           data: { confirm: I18n.t('scaffold.destroy_confirm') }
         }.deep_merge(link_opts)
       end
-      @columns << ->(rec) {
+      @columns << lambda { |rec|
         link_to t("scaffold.#{key}_html"), instance_exec(rec, &link), link_opts unless instance_exec(rec, &hide_if)
       }
     end

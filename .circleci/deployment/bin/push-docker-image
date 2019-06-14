@@ -1,0 +1,14 @@
+#!/bin/sh
+set -ex
+
+DOCKER_TAG=$1
+
+# Install aws cli
+sudo pip install awscli
+aws --version
+
+# Push docker image
+$(aws ecr get-login --no-include-email --region $AWS_REGION)
+docker pull $CONTAINER_IMAGE:tmp-$CIRCLE_SHA1
+docker tag $CONTAINER_IMAGE:tmp-$CIRCLE_SHA1 $CONTAINER_IMAGE:$DOCKER_TAG
+docker push $CONTAINER_IMAGE:$DOCKER_TAG

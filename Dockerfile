@@ -14,6 +14,7 @@ RUN set -x \
  && apk add --no-cache \
     libxml2-dev \
     libxslt-dev \
+    make \
     nodejs \
     nodejs-npm \
     yarn \

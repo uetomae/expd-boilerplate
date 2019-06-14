@@ -2,7 +2,6 @@ output "deploy-env" {
   value = {
     target_group   = "${aws_alb_target_group.alb.arn}"
     cluster_name   = "${aws_ecs_cluster.ecs_cluster.name}"
-    ecr_url        = "${aws_ecr_repository.app.repository_url}"
     container      = "expd-${var.app_name}-app"
     subnet1        = "${aws_subnet.public_a.id}"
     subnet2        = "${aws_subnet.public_c.id}"
