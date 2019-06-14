@@ -1,3 +1,3 @@
-output "alb" {
-  value = "${module.base.alb}"
+output "deploy-env" {
+  value = "${module.base.deploy-env}"
 }

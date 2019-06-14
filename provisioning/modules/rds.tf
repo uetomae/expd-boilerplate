@@ -1,5 +1,5 @@
 resource "aws_db_subnet_group" "rds-subnet-group" {
-  name       = "${var.app_name}-rds-subnet-group"
+  name       = "expd-${var.app_name}-rds-subnet-group"
   subnet_ids = ["${aws_subnet.public_a.id}", "${aws_subnet.public_c.id}"]
 }
 
@@ -10,7 +10,7 @@ resource "aws_db_instance" "default" {
   engine               = "mariadb"
   engine_version       = "10.2.21"
   instance_class       = "db.t3.micro"
-  name                 = "${var.app_name}"
+  name                 = "${var.app_name}_production"
   username             = "${var.db_user}"
   password             = "${var.db_pass}"
   parameter_group_name = "${aws_db_parameter_group.default.name}"

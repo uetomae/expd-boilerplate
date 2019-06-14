@@ -31,11 +31,11 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 .awscredentials
+.deploy-env
 
 # Ignore provisioning credentials
 /provisioning/.terraform
 /provisioning/terraform.tfvars
-/provisioning/.awscredential
 
 # Ignore system control files
 .DS_Store
