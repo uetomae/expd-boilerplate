@@ -18,6 +18,7 @@ echo "Application name '${tfvar_app_name}' is specified."
 echo "PLEASE make sure the application name is unique in ExPD family."
 echo "You need to create ECR repository for this project names 'expd-${tfvar_app_name}',"
 echo "then set the address to environment variable CONTAINER_IMAGE on circleci."
+echo ""
 [ -z "$tfvar_db_user" ] && tfvar_db_user="${tfvar_app_name}_user"
 ask "tfvar_db_user" "Enter DB user on production environment"
 [ -z "$tfvar_db_pass" ] && tfvar_db_pass=$(openssl rand -base64 12 | fold -w 10 | head -1)
