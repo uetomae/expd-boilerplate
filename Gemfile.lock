@@ -115,6 +115,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     msgpack (1.2.10)
+    multi_json (1.13.1)
     mysql2 (0.5.2)
     nio4r (2.3.1)
     nokogiri (1.10.3)
@@ -126,8 +127,6 @@ GEM
     rack (2.0.7)
     rack-mini-profiler (1.0.2)
       rack (>= 1.2.0)
-    rack-proxy (0.6.5)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.3)
@@ -168,6 +167,8 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     require_all (2.0.0)
+    rollbar (2.20.2)
+      multi_json
     rubocop (0.71.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -252,9 +253,9 @@ DEPENDENCIES
   mysql2 (>= 0.4.4, < 0.6.0)
   puma (~> 3.11)
   rack-mini-profiler
-  rack-proxy
   rails (~> 5.2.2)
   rails_best_practices
+  rollbar
   rubocop
   rubocop-inflector
   rubocop-performance

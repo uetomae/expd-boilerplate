@@ -25,4 +25,3 @@
 = stylesheet_bundle_tag "#{params[:controller]}#{params[:action].capitalize}"
 = javascript_bundle_tag 'vendor'
 = javascript_bundle_tag "#{params[:controller]}#{params[:action].capitalize}"
-= @woopra.js_code unless Rails.env.development? || Rails.env.test?

@@ -33,4 +33,5 @@ RUN set -x \
 COPY . /usr/src/app/
 WORKDIR /usr/src/app/
 
-RUN npm run build
+RUN npm run build \
+ && rm -fR ./node_modules

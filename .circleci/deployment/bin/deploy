@@ -17,6 +17,6 @@ ecs-cli compose \
   --cluster-config $ECS_CONFIG \
   service up \
   --target-group-arn $ECS_TARGET_GROUP \
-  --container-name $ECS_CONTAINER \
+  --container-name expd-app \
   --container-port 3000 \
   --timeout 10
