@@ -37,4 +37,6 @@ echo "export ECS_SECURITY_GROUP=${DEPLOY_ENV_security_group}" >> $DEPLOY_ENV_FIL
 echo "export MYSQL_HOST=${DEPLOY_ENV_db_host}" >> $DEPLOY_ENV_FILE
 echo "export MYSQL_DATABASE=${DEPLOY_ENV_db_name}" >> $DEPLOY_ENV_FILE
 echo "export LOG_GROUP=${DEPLOY_ENV_log_group}" >> $DEPLOY_ENV_FILE
+echo "export RAILS_ENV=production" >> $DEPLOY_ENV_FILE
+
 echo "'$DEPLOY_ENV_FILE' has been generated to deploy."
