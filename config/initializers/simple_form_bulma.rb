@@ -80,7 +80,7 @@ SimpleForm.setup do |config|
       classes << 'has-icons-left' if icon_left
       classes << 'has-icons-right' if icon_right
       template.content_tag(:div, class: classes.join(' ')) do
-        template.concat super(class: class_with_shape('input'))
+        template.concat super(options.merge(class: class_with_shape('input')))
         template.concat small_icon(icon_left, :left) if icon_left
         template.concat small_icon(icon_right, :right) if icon_left
       end
@@ -109,7 +109,7 @@ SimpleForm.setup do |config|
   class TextInput < SimpleForm::Inputs::TextInput
     def input(_wrapper_options = nil)
       template.content_tag(:div, class: 'control') do
-        super(class: 'textarea')
+        super(options.merge(class: 'textarea'))
       end
     end
   end

@@ -6,6 +6,11 @@
         %h2.subtitle= t(:site_subtitle)
         .uetomae-logo= image_tag image_path('uetomae-logo-mark.png'), size: '96x96'
         .link-field
-          = link_to 'https://github.com/uetomae/expd-boilerplate/wiki', class: 'button is-info is-large' do
-            = fas_icon :book
-            %span= t('.references')
+          - if route_exists?(:examples)
+            = link_to examples_path, class: 'button is-info is-large' do
+              = fas_icon 'window-restore'
+              %span= t('.examples')
+          - else
+            = link_to 'https://github.com/uetomae/expd-boilerplate/wiki', class: 'button is-info is-large' do
+              = fas_icon :book
+              %span= t('.references')

@@ -1,0 +1,19 @@
+%a{name: 'dropdown'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Dropdown Menu', 'https://bulma.io/documentation/components/dropdown/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_dropdown.html.haml' do
+        = fas_icon 'code'
+    .dropdown
+      .dropdown-trigger
+        %button.button{aria: {haspopup: 'true', controls: 'dropdown-menu'}}
+          %span Select Page
+          = fas_icon 'angle-down'
+      #dropdown-menu.dropdown-menu{role: 'menu'}
+        .dropdown-content
+          = link_to 'Dropdown Item 1', '#', class: 'dropdown-item'
+          = link_to 'Dropdown Item 2', '#', class: 'dropdown-item'
+          = link_to 'Dropdown Item 3', '#', class: 'dropdown-item'
+          %hr.dropdown-divider
+          = link_to 'Dropdown Item 4', '#', class: 'dropdown-item'

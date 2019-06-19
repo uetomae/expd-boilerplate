@@ -124,14 +124,14 @@ workflows:
           requires: [code-metrics]
           filters:
             branches:
-              only: develop
+              only: master
       - production-migrate:
           requires: [production-image]
           filters:
             branches:
-              only: develop
+              only: master
       - production-deploy:
           requires: [production-image, production-migrate]
           filters:
             branches:
-              only: develop
+              only: master

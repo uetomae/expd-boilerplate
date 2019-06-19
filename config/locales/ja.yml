@@ -12,6 +12,48 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
+  application:
+    global_nav:
+      home: ホーム
+      examples: サンプル
+      layout_naked: シンプルレイアウト
+      layout_global_top: グローバルトップ
+      layout_fixed_top: 固定トップ
+      layout_side_navi: サイドナビ
+      toast_input: 通知メッセージ
+      documents: ドキュメント
   home:
     index:
+      examples: Examples
       references: References
+  examples:
+    index:
+      title: Examples
+      layout_naked:
+        title: Naked Layout
+        subtitle: コンテンツだけを表示するシンプルなレイアウト
+      layout_global_top:
+        title: Global Top Layout
+        subtitle: グローバルナビをページ最上部に表示する
+      layout_fixed_top:
+        title: Fixed Top Layout
+        subtitle: グローバルナビをページ最上部に固定表示する
+      toast_input:
+        title: Toast
+        subtitle: トーストメッセージの送信テスト
+    toast_input:
+      type:
+        notice: 通知
+        alert: 警告
+  helpers:
+    submit:
+      submit: 実行する
+  simple_form:
+    labels:
+      toast:
+        move_to: 遷移先
+        type: タイプ
+        notify: メッセージ
+    placeholders:
+      toast:
+        notify: 送信するメッセージ

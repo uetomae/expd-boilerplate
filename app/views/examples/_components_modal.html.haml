@@ -1,0 +1,45 @@
+%a{name: 'modal'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Modal', 'https://bulma.io/documentation/components/modal/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_modal.html.haml' do
+        = fas_icon 'code'
+
+    %button.button.is-primary.is-large{'aria-open-modal': '#modal1'} Launch example
+    #modal1.modal
+      .modal-background
+      .modal-content
+        .box
+          %article.media
+            .media-left
+              %figure.image.is-64x64= image_tag image_path('uetomae-logo-mark.png')
+            .media-content
+              .content
+                %strong Uetomae
+                %small @uetomae
+                %div Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+      .modal-close.is-large{'aria-label': 'close'}
+
+    %button.button.is-primary.is-large{'aria-open-modal': '#modal2'}
+      = fas_icon 'image'
+      %span Launch Image
+    #modal2.modal
+      .modal-background
+      .modal-content
+        .image.is-16by9
+          = image_tag image_path('uetomae-expd.jpg')
+
+    %button.button.is-primary.is-large{'aria-open-modal': '#modal3'}
+      = fas_icon 'id-card'
+      %span Launch Card
+    #modal3.modal
+      .modal-background
+      .modal-card
+        %header.modal-card-head
+          .modal-card-title Modal Title
+        %section.modal-card-body
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+        %footer.modal-card-foot
+          %button.button.is-success Save changes
+          %button.button Cancel

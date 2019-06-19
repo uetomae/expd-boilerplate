@@ -1,0 +1,27 @@
+%a{name: 'card'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Card', 'https://bulma.io/documentation/components/card/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_card.html.haml' do
+        = fas_icon 'code'
+
+    .columns
+      .column.is-6
+        .card
+          .card-image{style: "background-image:url(#{image_path('uetomae-expd.jpg')});background-size:cover;"}
+            %figure.image.is-16by9
+          .card-content
+            .media
+              .media-left
+                %figure.image.is-48x48
+                  = image_tag image_path('uetomae-logo-mark.png')
+              .media-content
+                %p.title.is-4 Uetomae
+                %p.subtitle.is-6 @uetomae
+            .content
+              Lorem ipsum dolor sit amet, consecteture adipiscing elit.
+          .card-footer
+            = link_to 'Save', '#', class: 'card-footer-item'
+            = link_to 'Edit', '#', class: 'card-footer-item'
+            = link_to 'Delete', '#', class: 'card-footer-item'

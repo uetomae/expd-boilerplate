@@ -1,0 +1,27 @@
+%section.section
+  .container
+    .content
+      %h1.title= title
+
+      .tile.is-ancestor
+        .tile.is-vertical
+          .tile
+            .tile.is-parent
+              %article.tile.is-child.notification.is-info
+                = link_to examples_layout_naked_path do
+                  %p.title= t('.layout_naked.title')
+                .content= t('.layout_naked.subtitle')
+            .tile.is-parent.is-vertical
+              %article.tile.is-child.notification.is-primary
+                = link_to examples_layout_global_top_path do
+                  %p.title= t('.layout_global_top.title')
+                .content= t('.layout_global_top.subtitle')
+              %article.tile.is-child.notification.is-warning
+                = link_to examples_layout_fixed_top_path do
+                  %p.title= t('.layout_fixed_top.title')
+                .content= t('.layout_fixed_top.subtitle')
+      .tile
+        %article.tile.is-child.notification.is-danger
+          = link_to examples_toast_input_path do
+            %p.title= t('.toast_input.title')
+          .content= t('.toast_input.subtitle')

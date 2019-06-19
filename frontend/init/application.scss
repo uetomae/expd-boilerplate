@@ -7,11 +7,22 @@
 @import '~bulma-extensions/dist/css/bulma-extensions.min.css';
 
 /****************************************************************
+ * Global
+ */
+
+form {
+  abbr[title=required] {
+    text-decoration: none;
+    color: red;
+  }
+}
+
+/****************************************************************
  * Home
  */
 
 #home-banner {
-  background-image: url('~@images/uetomae-expd.jpg');
+  background-image: url('~@images/uetomae-expd-css.jpg');
   background-size: cover;
   background-position: center center;
   .container-circle {

@@ -1,0 +1,34 @@
+%a{name: 'panel'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Panel', 'https://bulma.io/documentation/components/panel/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_panel.html.haml' do
+        = fas_icon 'code'
+
+    .columns
+      .column.is-6
+        %nav.panel
+          .panel-heading Uetomae ExPD
+          .panel-block
+            .control.has-icons-left
+              %input.input.is-small{type: 'text', placeholder: 'search'}
+              = fas_icon :search
+          .panel-tabs
+            = link_to 'all', '#', class: 'is-active'
+            = link_to 'tab1', '#'
+            = link_to 'tab2', '#'
+            = link_to 'tab3', '#'
+            = link_to 'tab4', '#'
+          = link_to '#', class: 'panel-block' do
+            = far_icon 'thumbs-up'
+            %span ue
+          = link_to '#', class: 'panel-block' do
+            = far_icon 'handshake'
+            %span to
+          = link_to '#', class: 'panel-block is-active' do
+            = far_icon 'hand-point-right'
+            %span mae
+          = link_to '#', class: 'panel-block' do
+            = fas_icon 'shipping-fast'
+            %span expd

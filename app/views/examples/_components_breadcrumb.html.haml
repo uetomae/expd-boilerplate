@@ -1,0 +1,34 @@
+%a{name: 'breadcrumb'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Breadcrumb', 'https://bulma.io/documentation/components/breadcrumb/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_breadcrumb.html.haml' do
+        = fas_icon 'code'
+
+  %nav.breadcrumb{'aria-label': 'breadcrumbs'}
+    %ul
+      %li= link_to 'Home', '#'
+      %li= link_to 'Ueto', '#'
+      %li.is-active= link_to 'Mae', '#', 'aria-current': 'page'
+
+  %nav.breadcrumb{'aria-label': 'breadcrumbs'}
+    %ul
+      %li
+        = link_to '#' do
+          = fas_icon :home
+          %span Home
+      %li
+        = link_to '#' do
+          = fas_icon 'thumbs-up'
+          %span Ueto
+      %li.is-active
+        = link_to '#', 'aria-current': 'page' do
+          = fas_icon 'hand-point-right'
+          %span Mae
+
+  %nav.breadcrumb.has-succeeds-separator{'aria-label': 'breadcrumbs'}
+    %ul
+      %li= link_to 'Home', '#'
+      %li= link_to 'Ueto', '#'
+      %li.is-active= link_to 'Mae', '#', 'aria-current': 'page'

@@ -1,3 +1,5 @@
+metrics: rubocop rbp traceroute bundler-audit brakeman
+
 rubocop:
 	@bundle exec rubocop
 

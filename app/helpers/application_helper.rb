@@ -20,4 +20,10 @@ module ApplicationHelper
     tz = current_user ? current_user.time_zone : 'Asia/Tokyo'
     datetime.in_time_zone(tz)
   end
+
+  def route_exists?(path)
+    Rails.application.routes.recognize_path(path)
+  rescue ActionController::RoutingError
+    false
+  end
 end

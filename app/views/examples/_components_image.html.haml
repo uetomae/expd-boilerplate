@@ -1,0 +1,16 @@
+%a{name: 'image'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Image', 'https://bulma.io/documentation/elements/image/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_image.html.haml' do
+        = fas_icon 'code'
+
+    %figure.image.is-128x128= image_tag image_path('uetomae-logo-mark.png')
+    %figure.image.is-96x96= image_tag image_path('uetomae-logo-mark.png')
+    %figure.image.is-64x64= image_tag image_path('uetomae-logo-mark.png')
+    %figure.image.is-48x48= image_tag image_path('uetomae-logo-mark.png')
+    %figure.image.is-32x32= image_tag image_path('uetomae-logo-mark.png')
+    %figure.image.is-128x128= image_tag image_path('uetomae-logo-mark.png')
+    %figure.image.is-128x128.has-background-primary
+      = image_tag image_path('uetomae-logo-mark.png'), class: 'has-background-white is-rounded'

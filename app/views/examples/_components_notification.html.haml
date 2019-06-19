@@ -1,0 +1,12 @@
+%a{name: 'notification'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Notification', 'https://bulma.io/documentation/elements/notification/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_notification.html.haml' do
+        = fas_icon 'code'
+
+    - %w(primary link info success warning danger).each do |type|
+      .notification{class: "is-#{type}"}
+        %button.delete
+        Notification is here.

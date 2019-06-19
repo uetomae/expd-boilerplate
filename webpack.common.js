@@ -18,7 +18,7 @@ module.exports = {
       './frontend/init/application.scss'
     ],
     vendor: ['@vizuaalog/bulmajs', './frontend/init/vendor.js'],
-    images: glob.sync('./frontend/images/**/*'),
+    images: glob.sync('./frontend/images/**/*.*'),
     ...entries
   },
   // devtool: IS_DEV ? 'source-map' : 'none',
@@ -66,7 +66,7 @@ module.exports = {
         loader: 'pug-plain-loader'
       },
       {
-        test: /\.(c|sc)ss$/,
+        test: /\.s?css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -84,8 +84,10 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif)$/,
         loader: 'file-loader',
+        include: path.join(__dirname, 'frontend/images'),
         options: {
-          name: '[name]-[hash].[ext]',
+          name: '[path][name]-[hash].[ext]',
+          context: 'frontend/images/',
           outputPath: 'images/',
           publicPath: function(path) {
             return '/assets/images/' + path

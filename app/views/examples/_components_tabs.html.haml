@@ -1,0 +1,90 @@
+%a{name: 'tabs'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Tabs', 'https://bulma.io/documentation/components/tabs/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_tabs.html.haml' do
+        = fas_icon 'code'
+
+    .tabs
+      %ul
+        %li.is-active= link_to 'Pictures', '#'
+        %li= link_to 'Music', '#'
+        %li= link_to 'Videos', '#'
+        %li= link_to 'Documents', '#'
+
+    .tabs
+      %ul
+        %li.is-active
+          = link_to '#' do
+            = fas_icon :image, size: :small
+            %span Pictures
+        %li
+          = link_to '#' do
+            = fas_icon :music, size: :small
+            %span Music
+        %li
+          = link_to '#' do
+            = fas_icon :film, size: :small
+            %span Videos
+        %li
+          = link_to '#' do
+            = far_icon 'file-alt', size: :small
+            %span Documents
+
+    .tabs.is-boxed
+      %ul
+        %li.is-active
+          = link_to '#' do
+            = fas_icon :image, size: :small
+            %span Pictures
+        %li
+          = link_to '#' do
+            = fas_icon :music, size: :small
+            %span Music
+        %li
+          = link_to '#' do
+            = fas_icon :film, size: :small
+            %span Videos
+        %li
+          = link_to '#' do
+            = far_icon 'file-alt', size: :small
+            %span Documents
+
+    .tabs.is-toggle
+      %ul
+        %li.is-active
+          = link_to '#' do
+            = fas_icon :image, size: :small
+            %span Pictures
+        %li
+          = link_to '#' do
+            = fas_icon :music, size: :small
+            %span Music
+        %li
+          = link_to '#' do
+            = fas_icon :film, size: :small
+            %span Videos
+        %li
+          = link_to '#' do
+            = far_icon 'file-alt', size: :small
+            %span Documents
+
+    .tabs.is-toggle.is-toggle-rounded
+      %ul
+        %li.is-active
+          = link_to '#' do
+            = fas_icon :image, size: :small
+            %span Pictures
+        %li
+          = link_to '#' do
+            = fas_icon :music, size: :small
+            %span Music
+        %li
+          = link_to '#' do
+            = fas_icon :film, size: :small
+            %span Videos
+        %li
+          = link_to '#' do
+            = far_icon 'file-alt', size: :small
+            %span Documents

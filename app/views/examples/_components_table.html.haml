@@ -1,0 +1,83 @@
+%a{name: 'table'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Tabs', 'https://bulma.io/documentation/elements/table/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_table.html.haml' do
+        = fas_icon 'code'
+
+    %table.table.is-hoverable
+      %thead
+        %tr
+          %th Pos
+          %th Team
+          %th P
+          %th W
+          %th D
+          %th L
+          %th.is-hidden-mobile PF
+          %th.is-hidden-mobile PA
+          %th.is-hidden-mobile +/-
+          %th.is-hidden-mobile BP
+          %th Pts
+      %tbody
+        %tr
+          %td 1
+          %td Crusaders
+          %td 16
+          %td 14
+          %td 0
+          %td 2
+          %td.is-hidden-mobile 542
+          %td.is-hidden-mobile 295
+          %td.is-hidden-mobile 247
+          %td.is-hidden-mobile 7
+          %td 63
+        %tr
+          %td 2
+          %td Hurricanes
+          %td 16
+          %td 11
+          %td 0
+          %td 5
+          %td.is-hidden-mobile 474
+          %td.is-hidden-mobile 343
+          %td.is-hidden-mobile 131
+          %td.is-hidden-mobile 7
+          %td 51
+        %tr
+          %td 3
+          %td Chiefs
+          %td 16
+          %td 11
+          %td 0
+          %td 5
+          %td.is-hidden-mobile 463
+          %td.is-hidden-mobile 368
+          %td.is-hidden-mobile 95
+          %td.is-hidden-mobile 5
+          %td 49
+        %tr.is-selected
+          %td 4
+          %td Highlanders
+          %td 16
+          %td 10
+          %td 0
+          %td 6
+          %td.is-hidden-mobile 437
+          %td.is-hidden-mobile 445
+          %td.is-hidden-mobile -8
+          %td.is-hidden-mobile 4
+          %td 44
+        %tr
+          %td 5
+          %td Blues
+          %td 16
+          %td 4
+          %td 0
+          %td 12
+          %td.is-hidden-mobile 378
+          %td.is-hidden-mobile 509
+          %td.is-hidden-mobile -131
+          %td.is-hidden-mobile 6
+          %td 22
