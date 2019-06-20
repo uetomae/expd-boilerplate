@@ -1,0 +1,137 @@
+---
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: circleci/python:3.7.1
+    working_directory: ~/repo
+  app:
+    docker:
+      - image: $CONTAINER_IMAGE:tmp-$CIRCLE_SHA1
+        environment:
+          RAILS_ENV: test
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USER: root
+          MYSQL_PASSWORD: passw0rd
+    working_directory: /usr/src/app
+
+jobs:
+  build:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install awscli
+          command: ./.circleci/deployment/bin/install-aws-cli
+      - run:
+          name: Build release candidate docker-image
+          command: ./.circleci/deployment/bin/build-docker-image
+
+  code-metrics:
+    executor:
+      name: app
+    steps:
+      - run:
+          name: Code analysis by rubocop
+          command: make rubocop
+          when: always
+      - run:
+          name: Check the quality of Rails code by rails_best_practices
+          command: make rbp
+          when: always
+      - run:
+          name: Check routes usage
+          command: make traceroute
+          when: always
+      - run:
+          name: Check bundlers audit
+          command: make bundler-audit
+          when: always
+      - run:
+          name: Security analysis by brakeman
+          command: make brakeman
+          when: always
+      - store_artifacts:
+          path: /tmp/brakeman-report.html
+          destination: brakeman-report.html
+
+  production-image:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Push release docker-image
+          command: ./.circleci/deployment/bin/push-docker-image production
+
+  production-migrate:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install ecs cli
+          command: ./.circleci/deployment/bin/install-ecs-cli
+      - run:
+          name: DB Migration
+          command: |
+            source ./.circleci/deployment/env
+            ./.circleci/deployment/bin/migrate
+  
+  production-deploy:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install ecs cli
+          command: ./.circleci/deployment/bin/install-ecs-cli
+      - run:
+          name: Report deploy to be started
+          command: ./.circleci/deployment/bin/report-deploy production started
+      - run:
+          name: Rolling update
+          command: |
+            source ./.circleci/deployment/env
+            ./.circleci/deployment/bin/deploy
+      - run:
+          name: Report deploy to be succeeded
+          command: ./.circleci/deployment/bin/report-deploy production succeeded
+          when: on_success
+      - run:
+          name: Report deploy to be failed
+          command: ./.circleci/deployment/bin/report-deploy production failed
+          when: on_fail
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build
+      - code-metrics:
+          requires: [build]
+      - production-image:
+          requires: [code-metrics]
+          filters:
+            branches:
+              only: master
+      - production-migrate:
+          requires: [production-image]
+          filters:
+            branches:
+              only: master
+      - production-deploy:
+          requires: [production-image, production-migrate]
+          filters:
+            branches:
+              only: master

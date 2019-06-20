@@ -1,0 +1,22 @@
+---
+version: "3"
+services:
+  expd-migrate:
+    image: $CONTAINER_IMAGE:$RAILS_ENV
+    command: ['./bin/increment-db']
+    environment:
+      RAILS_ENV: $RAILS_ENV
+      RAILS_LOG_TO_STDOUT: 1
+      RAILS_SERVE_STATIC_FILES: 1
+      RAILS_MASTER_KEY: $RAILS_MASTER_KEY
+      MYSQL_HOST: $MYSQL_HOST
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      ROLLBAR_ACCESS_TOKEN: $ROLLBAR_ACCESS_TOKEN
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: $AWS_REGION
+        awslogs-group: $LOG_GROUP
+        awslogs-stream-prefix: ecs

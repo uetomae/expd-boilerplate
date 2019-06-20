@@ -1,0 +1,7 @@
+#!/bin/sh
+
+rm -f tmp/pids/server.pid
+./bin/rails db:migrate
+./bin/rails db:seed_fu
+./bin/rails db:seed_fu FIXTURE_PATH=./db/fixtures/development
+bundle exec foreman start -p 3000

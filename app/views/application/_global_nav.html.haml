@@ -1,0 +1,30 @@
+- navbar_class ||= []
+%nav.navbar.has-shadow{class: navbar_class, role: 'navigation', 'aria-label': 'main navigation'}
+  .navbar-brand
+    = link_to root_path, class: 'navbar-item' do
+      = t(:site_name)
+    %a.navbar-burger.burger{role: 'button', aria: {label: 'menu', expanded: 'false'}, 'data-target': 'global-navbar'}
+      %span{'aria-hidden': 'true'}
+      %span{'aria-hidden': 'true'}
+      %span{'aria-hidden': 'true'}
+
+  #global-navbar.navbar-menu
+    .navbar-start
+      = link_to root_path, class: 'navbar-item' do
+        = fas_icon :home
+        %span= t('.home')
+      - if route_exists?(:examples)
+        .navbar-item.has-dropdown.is-hoverable
+          = link_to examples_path, class: 'navbar-link' do
+            = fas_icon 'window-restore'
+            %span= t('.examples')
+          .navbar-dropdown
+            = link_to t('.layout_naked'), examples_layout_naked_path, class: 'navbar-item'
+            = link_to t('.layout_global_top'), examples_layout_global_top_path, class: 'navbar-item'
+            = link_to t('.layout_fixed_top'), examples_layout_fixed_top_path, class: 'navbar-item'
+            %hr.navbar-divider
+            = link_to t('.toast_input'), examples_toast_input_path, class: 'navbar-item'
+    .navbar-end
+      .navbar-item
+        .buttons
+          = link_to t('.documents'), 'https://github.com/uetomae/expd-boilerplate/wiki', class: 'button is-light'

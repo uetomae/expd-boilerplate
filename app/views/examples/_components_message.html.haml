@@ -1,0 +1,20 @@
+%a{name: 'message'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Message', 'https://bulma.io/documentation/components/message/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_message.html.haml' do
+        = fas_icon 'code'
+
+    - %w(dark primary link info success warning danger).each do |type|
+      %article.message{class: "is-#{type}"}
+        .message-header
+          = type.camelize
+          %button.delete{'aria-label': 'delete'}
+        .message-body
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+
+    - %w(dark primary link info success warning danger).each do |type|
+      %article.message{class: "is-#{type}"}
+        .message-body
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.

@@ -1,0 +1,49 @@
+---
+version: "3"
+services:
+  nginx:
+    image: nginx:1.15.12-alpine
+    restart: always
+    volumes:
+    - .:/usr/src/app
+    - data-sockets:/usr/src/app/tmp/sockets
+    - ./dev/conf/nginx:/etc/nginx/conf.d
+    - ./dev/conf/certs:/etc/nginx/certs
+    depends_on:
+    - web
+    ports:
+    - "80:80"
+    - "443:443"
+    
+  web:
+    build: .
+    volumes:
+    - .:/usr/src/app
+    - data-sockets:/usr/src/app/tmp/sockets
+    command: dev/bin/setup
+    depends_on:
+    - db
+    environment:
+    - MYSQL_HOST=db
+    - MYSQL_DATABASE=expd_development
+    - MYSQL_USER=expd_user
+    - MYSQL_PASSWORD=expd_passwd
+    - RAILS_ENV=development
+    ports:
+    - "3035:3035"
+
+  db:
+    image: mariadb:10.1.37
+    restart: always
+    volumes:
+    - data-db:/var/lib/mysql
+    - ./dev/conf/mysql/my.cnf:/etc/mysql/my.cnf
+    environment:
+    - MYSQL_ROOT_PASSWORD=passw0rd
+    - MYSQL_DATABASE=expd_development
+    - MYSQL_USER=expd_user
+    - MYSQL_PASSWORD=expd_passwd
+
+volumes:
+  data-db:
+  data-sockets:

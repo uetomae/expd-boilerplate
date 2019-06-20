@@ -1,0 +1,9 @@
+!!!
+%html.has-navbar-fixed-top
+  %head
+    = render 'head'
+  %body
+    = render 'global_nav', navbar_class: %w(is-fixed-top)
+    = yield
+    = render 'global_footer'
+    = render 'shared_shoes'

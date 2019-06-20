@@ -1,0 +1,8 @@
+%section.section
+  .container
+    = simple_form_for :toast, url: examples_toast_message_path, wrapper: :horizontal do |f|
+      = f.input :move_to, as: :radio_buttons, collection: [['home', " #{t('application.global_nav.home')}"], ['examples', " #{t('application.global_nav.examples')}"], ['fixed_top', " #{t('application.global_nav.layout_fixed_top')}"]], label_method: :second, value_method: :first, item_label_class: 'radio', item_wrapper_tag: nil, collection_wrapper_tag: :div, collection_wrapper_class: 'control', checked: 'home'
+      = f.input :type, as: :radio_buttons, collection: [['notice', " #{t('.type.notice')}"], ['alert', " #{t('.type.alert')}"]], label_method: :second, value_method: :first, item_label_class: 'radio', item_wrapper_tag: nil, collection_wrapper_tag: :div, collection_wrapper_class: 'control', checked: 'notice'
+      = f.input :notify, as: :text, required: true, value: 'Toast Message!'
+      .field.is-grouped.is-grouped-centered
+        = f.button :submit

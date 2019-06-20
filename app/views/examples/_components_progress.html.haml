@@ -1,0 +1,14 @@
+%a{name: 'progress'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Progress', 'https://bulma.io/documentation/elements/progress/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_progress.html.haml' do
+        = fas_icon 'code'
+
+    - {primary: 15, link: 30, info: 45, success: 60, warning: 75, danger: 100}.each do |type, value|
+      %progress.progress{class: "is-#{type}", value: value, max: 100}
+    %progress.progress.is-primary.is-small{max: 100}
+    %progress.progress.is-warning{max: 100}
+    %progress.progress.is-info.is-medium{max: 100}
+    %progress.progress.is-dark.is-large{max: 100}

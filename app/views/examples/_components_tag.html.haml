@@ -1,0 +1,30 @@
+%a{name: 'tag'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Tag', 'https://bulma.io/documentation/elements/tag/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_tag.html.haml' do
+        = fas_icon 'code'
+
+    .tags
+      - %w(black dark light white primary link info success warning danger).each do |type|
+        %span.tag{class: "is-#{type}"}= type.camelize
+    .tags.are-medium
+      - %w(black dark light white primary link info success warning danger).each do |type|
+        %span.tag{class: "is-#{type}"}= type.camelize
+    .tags
+      - %w(black dark light white primary link info success warning danger).each do |type|
+        %span.tag.is-rounded{class: "is-#{type}"}= type.camelize
+    .field.is-grouped.is-grouped-multiline
+      .control
+        .tags.has-addons
+          %span.tag.is-dark expd
+          %span.tag.is-info 0.1.0
+      .control
+        .tags.has-addons
+          %span.tag.is-dark expd
+          %span.tag.is-success passing
+      .control
+        .tags.has-addons
+          %span.tag.is-rounded.is-dark expd
+          %span.tag.is-rounded.is-danger failed

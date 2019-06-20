@@ -1,0 +1,42 @@
+#!/bin/bash
+
+PROJECT_DIR=$(cd $(dirname $0); cd ..; pwd)
+TMP_FILE=/tmp/deploy-env.tfvars
+
+$PROJECT_DIR/expd-bin/terraform-docker output | egrep "^ " | tr -d '\r' > $TMP_FILE
+DEPLOY_ENV_SECRET=$PROJECT_DIR/.deploy-env
+DEPLOY_ENV_FILE=$PROJECT_DIR/.circleci/deployment/env
+while read line
+do
+  ary=($line)
+  eval VARNAME=${ary[0]}
+  eval DEPLOY_ENV_${VARNAME}=${ary[2]}
+done < $TMP_FILE
+rm -f $TMP_FILE
+
+AWS_CREDENTIALS=$PROJECT_DIR/.awscredentials
+source $AWS_CREDENTIALS
+rm -f $DEPLOY_ENV_SECRET
+echo "export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" >> $DEPLOY_ENV_SECRET
+echo "export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" >> $DEPLOY_ENV_SECRET
+echo "export AWS_REGION=${AWS_DEFAULT_REGION}" >> $DEPLOY_ENV_SECRET
+echo "export MYSQL_USER=${DEPLOY_ENV_db_user}" >> $DEPLOY_ENV_SECRET
+echo "export MYSQL_PASSWORD=${DEPLOY_ENV_db_password}" >> $DEPLOY_ENV_SECRET
+MASTER_KEY_FILE=$PROJECT_DIR/config/master.key
+[ -f $MASTER_KEY_FILE ] && echo "export RAILS_MASTER_KEY=$(cat $MASTER_KEY_FILE)" >> $DEPLOY_ENV_SECRET
+echo "'$DEPLOY_ENV_SECRET' has been generated to set your circleci project."
+
+rm -f $DEPLOY_ENV_FILE
+echo "export APP_NAME=${DEPLOY_ENV_app_name}" >> $DEPLOY_ENV_FILE
+echo "export ECS_CLUSTER=${DEPLOY_ENV_cluster_name}" >> $DEPLOY_ENV_FILE
+echo "export ECS_TARGET_GROUP=${DEPLOY_ENV_target_group}" >> $DEPLOY_ENV_FILE
+echo "export ECS_CONTAINER=${DEPLOY_ENV_container}" >> $DEPLOY_ENV_FILE
+echo "export ECS_SUBNET1=${DEPLOY_ENV_subnet1}" >> $DEPLOY_ENV_FILE
+echo "export ECS_SUBNET2=${DEPLOY_ENV_subnet2}" >> $DEPLOY_ENV_FILE
+echo "export ECS_SECURITY_GROUP=${DEPLOY_ENV_security_group}" >> $DEPLOY_ENV_FILE
+echo "export MYSQL_HOST=${DEPLOY_ENV_db_host}" >> $DEPLOY_ENV_FILE
+echo "export MYSQL_DATABASE=${DEPLOY_ENV_db_name}" >> $DEPLOY_ENV_FILE
+echo "export LOG_GROUP=${DEPLOY_ENV_log_group}" >> $DEPLOY_ENV_FILE
+echo "export RAILS_ENV=production" >> $DEPLOY_ENV_FILE
+
+echo "'$DEPLOY_ENV_FILE' has been generated to deploy."

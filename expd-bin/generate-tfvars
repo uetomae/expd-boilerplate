@@ -1,0 +1,32 @@
+#!/bin/bash
+
+PROJECT_DIR=$(cd $(dirname $0); cd ..; pwd)
+TFVARS="$PROJECT_DIR/provisioning/terraform.tfvars"
+
+. $PROJECT_DIR/expd-bin/generate-base
+
+if [ -f "$TFVARS" ]; then
+  while read line
+  do
+    ary=($line)
+    eval "tfvar_${ary[0]}=${ary[2]}"
+  done < $TFVARS
+fi
+
+ask "tfvar_app_name" "Enter application id (only lower alphabet, number and hyphen)"
+echo "Application name '${tfvar_app_name}' is specified."
+echo "PLEASE make sure the application name is unique in ExPD family."
+echo "You need to create ECR repository for this project names 'expd-${tfvar_app_name}',"
+echo "then set the address to environment variable CONTAINER_IMAGE on circleci."
+echo ""
+[ -z "$tfvar_db_user" ] && tfvar_db_user="${tfvar_app_name}_user"
+ask "tfvar_db_user" "Enter DB user on production environment"
+[ -z "$tfvar_db_pass" ] && tfvar_db_pass=$(openssl rand -base64 12 | fold -w 10 | head -1)
+ask "tfvar_db_pass" "Enter DB password on production environment"
+
+echo "app_name = \"${tfvar_app_name}\"" > $TFVARS
+echo "db_user = \"${tfvar_db_user}\"" >> $TFVARS
+echo "db_pass = \"${tfvar_db_pass}\"" >> $TFVARS
+
+# Replace app name on main.tf to async tf state on s3
+sed -i "" -e "s/^\( *key *= *\"expd-\).*\(\.terraform\.tfstate\"\)/\1${tfvar_app_name}\2/g" $PROJECT_DIR/provisioning/main.tf

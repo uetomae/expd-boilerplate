@@ -1,0 +1,31 @@
+#!/bin/sh
+set -ex
+
+if [ -z "$ROLLBAR_ACCESS_TOKEN" ]; then
+  echo "No rollbar access token"
+  exit
+fi
+
+RAILS_ENV=$1
+DEPLOY_STATUS=$2
+
+DEPLOY_FILE=/tmp/rollbar_deploy_id
+[ -f "$DEPLOY_FILE" ] && ROLLBAR_DEPLOY_ID=$(cat $DEPLOY_FILE)
+
+if [ -z "$ROLLBAR_DEPLOY_ID" ]; then
+   curl https://api.rollbar.com/api/1/deploy/ \
+   --form access_token=$ROLLBAR_ACCESS_TOKEN \
+   --form environment=$RAILS_ENV \
+   --form revision=$CIRCLE_SHA1 \
+   --form local_username=$CIRCLE_USERNAME \
+   --form status=started | jq -r '.data.deploy_id' > $DEPLOY_FILE
+else
+   rm -f $DEPLOY_FILE
+   curl https://api.rollbar.com/api/1/deploy/${ROLLBAR_DEPLOY_ID} \
+   --request PATCH \
+   --form access_token=$ROLLBAR_ACCESS_TOKEN \
+   --form environment=$RAILS_ENV \
+   --form revision=$CIRCLE_SHA1 \
+   --form local_username=$CIRCLE_USERNAME \
+   --form status=$DEPLOY_STATUS
+fi

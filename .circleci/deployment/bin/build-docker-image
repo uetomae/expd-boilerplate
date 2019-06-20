@@ -1,0 +1,17 @@
+#!/bin/sh
+set -ex
+
+# Login to ECR
+$(aws ecr get-login --no-include-email --region $AWS_REGION)
+
+CACHED_TAG=$(md5sum Dockerfile | cut -d ' ' -f 1)
+aws ecr describe-images --repository-name uetomae-tools --region $AWS_REGION | jq ".imageDetails[].imageTags[]" | egrep "\"${CACHED_TAG}\"" && true
+if [ $? -eq 0 ]; then
+  docker pull $CONTAINER_IMAGE:$CACHED_TAG
+  docker build -t $CONTAINER_IMAGE:tmp-$CIRCLE_SHA1 --cache-from $CONTAINER_IMAGE:$CACHED_TAG .
+else
+  docker build -t $CONTAINER_IMAGE:tmp-$CIRCLE_SHA1 .
+fi
+docker push $CONTAINER_IMAGE:tmp-$CIRCLE_SHA1
+docker tag $CONTAINER_IMAGE:tmp-$CIRCLE_SHA1 $CONTAINER_IMAGE:$CACHED_TAG
+docker push $CONTAINER_IMAGE:$CACHED_TAG

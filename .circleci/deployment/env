@@ -1,0 +1,11 @@
+export APP_NAME=boilerplate
+export ECS_CLUSTER=expd-boilerplate
+export ECS_TARGET_GROUP=arn:aws:elasticloadbalancing:ap-northeast-1:891347377932:targetgroup/expd-boilerplate-alb-tg/2587e015f0c3b374
+export ECS_CONTAINER=expd-boilerplate-app
+export ECS_SUBNET1=subnet-0f3facc7263a5f87d
+export ECS_SUBNET2=subnet-0d0375e633abdd1fc
+export ECS_SECURITY_GROUP=sg-033f41e558a4f70e0
+export MYSQL_HOST=expd-boilerplate-db.cvoqwij1bxvd.ap-northeast-1.rds.amazonaws.com
+export MYSQL_DATABASE=boilerplate_production
+export LOG_GROUP=expd/boilerplate
+export RAILS_ENV=production

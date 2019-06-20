@@ -1,0 +1,5 @@
+#toast-messages
+  - if flash[:notice]
+    %toast-message{type: 'success', msg: flash[:notice]}
+  - if flash[:alert]
+    %toast-message{type: 'danger', msg: flash[:alert]}

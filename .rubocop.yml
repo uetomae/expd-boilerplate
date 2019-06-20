@@ -1,0 +1,71 @@
+---
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-inflector
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+# 複数行での「lambda」で「->」による省略記法を許可
+Lambda:
+  Enabled: false
+
+# モジュール名::クラス名の定義を許可
+ClassAndModuleChildren:
+  Enabled: false
+
+# クラスにコメントを残さない
+Documentation:
+  Enabled: false
+
+# 1行の長さ
+LineLength:
+  Max: 120
+
+# メソッドの行数
+MethodLength:
+  CountComments: false
+  Max: 60
+
+AbcSize:
+  Max: 30
+
+EmptyLineAfterGuardClause:
+  Enabled: false
+
+BlockLength:
+  Exclude:
+    - config/settings/*
+    - config/environments/*
+    - spec/**/*
+
+ExampleLength:
+  Exclude:
+    - spec/**/*
+
+DynamicFindBy:
+  Exclude:
+    - spec/**/*
+
+UnknownEnv:
+  Environments:
+    - production
+    - staging
+    - test
+    - development
+
+MultipleExpectations:
+  Max: 10
+
+AllCops:
+  TargetRubyVersion: 2.6
+  Exclude:
+    - db/schema.rb
+    - Dangerfile
+    - tmp/**/*
+    - bin/**/*
+    - node_modules/**/*
+    - template.rb

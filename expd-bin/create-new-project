@@ -1,0 +1,42 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]; then
+  echo "Please specify the target path."
+  exit 1
+fi
+
+# Check target path
+TARGET_PATH="$1"
+if [ -d "$TARGET_PATH" ]; then
+  TARGET_PATH=$(cd "$TARGET_PATH" && pwd)
+  [ $? -ne 0 ] && exit 1
+  TARGET_DIR=$(dirname "$TARGET_PATH")
+  TARGET_PROJECT=$(basename "$TARGET_PATH")
+else
+  TARGET_DIR=$(cd $(dirname "$TARGET_PATH") && pwd)
+  [ $? -ne 0 ] && exit 1
+  TARGET_PROJECT=$(basename "$TARGET_PATH")
+fi
+TARGET_PATH="$TARGET_DIR/$TARGET_PROJECT"
+
+# Check if target path exists
+[ ! -d "$TARGET_PATH" ] && mkdir "$TARGET_PATH"
+
+# Check if target path is empty
+if [ ! -z "$(ls -A $TARGET_PATH)" ]; then
+  echo "Target directory '$TARGET_PATH' already have any contents."
+  exit 1
+fi
+
+# Copy all files
+CURRENT_PATH=$(cd $(dirname $(dirname "$0")) && pwd)
+rm -fR "$TARGET_PATH"
+cp -R "$CURRENT_PATH" "$TARGET_PATH"
+
+# Remove credential files
+rm -fR "$TARGET_PATH/.git"
+rm -f "$TARGET_PATH/config/master.key"
+rm -f "$TARGET_PATH/config/.awscredentials"
+rm -f "$TARGET_PATH/config/.deploy-env"
+rm -fR "$TARGET_PATH/provisioning/.terraform"
+rm -f "$TARGET_PATH/provisioning/terraform.tfvars"

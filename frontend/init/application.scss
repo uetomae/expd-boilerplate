@@ -1,0 +1,55 @@
+@charset 'utf-8';
+@import '~normalize.css/normalize.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import '~animate.css/animate.min.css';
+@import './_variables.scss';
+@import '~bulma/bulma';
+@import '~bulma-extensions/dist/css/bulma-extensions.min.css';
+
+/****************************************************************
+ * Global
+ */
+
+form {
+  abbr[title=required] {
+    text-decoration: none;
+    color: red;
+  }
+}
+
+/****************************************************************
+ * Home
+ */
+
+#home-banner {
+  background-image: url('~@images/uetomae-expd-css.jpg');
+  background-size: cover;
+  background-position: center center;
+  .container-circle {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 28rem;
+    height: 28rem;
+    padding: 5rem;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.7);
+  }
+  .title {
+    font-family: Impact;
+    font-size: 3rem;
+    color: #222;
+  }
+  .subtitle {
+    color: #222;
+  }
+  .link-field {
+    margin-top: 2rem;
+  }
+}

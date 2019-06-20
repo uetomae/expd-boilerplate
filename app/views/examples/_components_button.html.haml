@@ -1,0 +1,78 @@
+%a{name: 'button'}
+%section.section
+  .content
+    %h3.subtitle
+      = link_to 'Button', 'https://bulma.io/documentation/elements/button/'
+      = link_to 'https://github.com/uetomae/expd-boilerplate/blob/master/app/views/examples/_components_button.html.haml' do
+        = fas_icon 'code'
+    .box
+      .buttons
+        = link_to 'Default', '#', class: 'button'
+        = link_to 'Primary', '#', class: 'button is-primary'
+        = link_to 'Link', '#', class: 'button is-link'
+        = link_to 'Info', '#', class: 'button is-info'
+        = link_to 'Success', '#', class: 'button is-success'
+        = link_to 'Warning', '#', class: 'button is-warning'
+        = link_to 'Danger', '#', class: 'button is-danger'
+    .box
+      .buttons
+        = link_to 'Default', '#', class: 'button is-outlined'
+        = link_to 'Primary', '#', class: 'button is-outlined is-primary'
+        = link_to 'Link', '#', class: 'button is-outlined is-link'
+        = link_to 'Info', '#', class: 'button is-outlined is-info'
+        = link_to 'Success', '#', class: 'button is-outlined is-success'
+        = link_to 'Warning', '#', class: 'button is-outlined is-warning'
+        = link_to 'Danger', '#', class: 'button is-outlined is-danger'
+    .box.has-background-primary
+      .buttons
+        = link_to 'Default', '#', class: 'button is-inverted'
+        = link_to 'Primary', '#', class: 'button is-inverted is-primary'
+        = link_to 'Link', '#', class: 'button is-inverted is-link'
+        = link_to 'Info', '#', class: 'button is-inverted is-info'
+        = link_to 'Success', '#', class: 'button is-inverted is-success'
+        = link_to 'Warning', '#', class: 'button is-inverted is-warning'
+        = link_to 'Danger', '#', class: 'button is-inverted is-danger'
+        = link_to 'Invert Outlined', '#', class: 'button is-inverted is-outlined is-primary'
+    .box
+      .buttons
+        = link_to 'Default', '#', class: 'button', disabled: true
+        = link_to 'Primary', '#', class: 'button is-primary', disabled: true
+        = link_to 'Link', '#', class: 'button is-link', disabled: true
+        = link_to 'Info', '#', class: 'button is-info', disabled: true
+        = link_to 'Success', '#', class: 'button is-success', disabled: true
+        = link_to 'Warning', '#', class: 'button is-warning', disabled: true
+        = link_to 'Danger', '#', class: 'button is-danger', disabled: true
+    .box
+      .buttons
+        = link_to 'Small', '#', class: 'button is-small'
+        = link_to 'Normal', '#', class: 'button'
+        = link_to 'Medium', '#', class: 'button is-medium'
+        = link_to 'Large', '#', class: 'button is-large'
+    .box
+      .buttons
+        = link_to 'Rounded', '#', class: 'button is-rounded is-primary'
+        = link_to 'Loading', '#', class: 'button is-loading is-primary'
+    .box
+      .buttons
+        = link_to '#', class: 'button' do
+          = fas_icon :bold
+        = link_to '#', class: 'button is-success' do
+          = fas_icon :check
+          %span Save
+        = link_to '#', class: 'button is-danger is-outlined' do
+          %span Delete
+          = fas_icon :times
+    .box
+      .field.has-addons
+        .control
+          = link_to '#', class: 'button' do
+            = fas_icon 'align-left'
+            %span Left
+        .control
+          = link_to '#', class: 'button' do
+            = fas_icon 'align-center'
+            %span Center
+        .control
+          = link_to '#', class: 'button' do
+            = fas_icon 'align-right'
+            %span Right

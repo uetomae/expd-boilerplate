@@ -1,0 +1,6 @@
+#!/bin/sh
+set -ex
+
+./bin/rake db:migrate
+./bin/rake db:seed_fu
+./bin/rake db:seed_fu FIXTURE_PATH=db/fixtures/${RAILS_ENV}/
