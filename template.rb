@@ -29,6 +29,7 @@ run 'rm -fR app/assets'
 FileUtils.cp_r("#{File.expand_path(File.dirname(__FILE__))}/frontend", 'frontend')
 
 # bulma integration
+copy_file 'config/initializer/simple_form.rb'
 copy_file 'config/initializer/simple_form_bulma.rb'
 copy_file 'lib/helper_models.rb'
 copy_file 'lib/helper_models/html_menu_list.rb'
@@ -45,10 +46,12 @@ copy_file 'app/views/layouts/mailer.html.haml'
 copy_file 'app/views/layouts/mailer.text.haml'
 run 'find app/views -name "*.erb" -exec rm -f {} \;'
 
-# root example
+# examples
 if !File.exists?('app/controller/home_controller.rb') ||
     yes? 'Do you want to create an example homepage?'
-  route 'home#index'
+  FileUtils.cp_r("#{File.expand_path(File.dirname(__FILE__))}/public", 'public')
+  # home
+  route 'root home#index'
   copy_file 'app/controllers/home_controller.rb'
   copy_file 'app/views/home/index.html.haml'
   copy_file 'config/locales/ja.yml'
