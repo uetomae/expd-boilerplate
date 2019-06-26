@@ -1,0 +1,12 @@
+-# frozen_string_literal: true
+
+= simple_form_for(@<%= singular_table_name %>, wrapper: :horizontal) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  <%- attributes.each do |attribute| -%>
+  = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+  <%- end -%>
+
+  = field_group align: :centered do
+    = f.button :submit

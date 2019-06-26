@@ -9,7 +9,7 @@ module BulmaHelper
   def field_group(options = {}, &block)
     options[:class] ||= ['is-grouped', options[:class] || nil].compact.uniq
     options[:class] << "is-grouped-#{options[:align]}" if options[:align]
-    field(options, capture(&block))
+    field(options, &block)
   end
 
   def field_horizontal(label, options = {}, &block)

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+PROJECT_DIR=$(cd $(dirname $0); cd ..; pwd)
+
+MASTER_KEY_FILE=$PROJECT_DIR/config/master.key
+CREDENTIALS_FILE=$PROJECT_DIR/config/credentials.yml.enc
+[ -f "$MASTER_KEY_FILE" ] && exit 0
+if [ -f "$CREDENTIALS_FILE" ]; then
+  echo "You have a credentials.yml.enc, but no master.key is found. Please ask someone who should know what your secret key is then put it into 'config/master.key' here."
+  echo "Just in case you want to clear your credentials and generate a new secret key, please delete your 'config/credentials.yml.enc' then hit the command again."
+  exit 1
+fi
+
+docker-compose run --rm -e EDITOR=mate web ./bin/rails credentials:edit

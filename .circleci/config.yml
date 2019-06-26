@@ -83,7 +83,7 @@ jobs:
       - run:
           name: DB Migration
           command: |
-            source ./.circleci/deployment/env
+            [ -f ./.circleci/deployment/env ] && source ./.circleci/deployment/env
             ./.circleci/deployment/bin/migrate
   
   production-deploy:
@@ -102,7 +102,7 @@ jobs:
       - run:
           name: Rolling update
           command: |
-            source ./.circleci/deployment/env
+            [ -f ./.circleci/deployment/env ] && source ./.circleci/deployment/env
             ./.circleci/deployment/bin/deploy
       - run:
           name: Report deploy to be succeeded
