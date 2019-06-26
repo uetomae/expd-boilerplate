@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 module AddFrozenStringLiteralComment
   def add_frozen_string_literal_comment(dist)
-    if File.exist?(dist) && File.extname(dist) == '.rb'
-      File.open(dist, 'r') do |f|
-        body = f.read
+    return unless File.exist?(dist) && File.extname(dist) == '.rb'
+    File.open(dist, 'r') do |f|
+      body = f.read
 
-        File.open(dist, 'w') do |new_f|
-          new_f.write("# frozen_string_literal: true\n\n" + body)
-        end
+      File.open(dist, 'w') do |new_f|
+        new_f.write("# frozen_string_literal: true\n\n" + body)
       end
     end
   end
@@ -32,6 +33,6 @@ module TemplatePrepend
   end
 end
 
-Rails::Generators::Migration
+Rails::Generators::Migration # rubocop:disable Lint/Void
 Rails::Generators::Actions::CreateMigration.send :prepend, GeneratorPrepend
 Rails::Generators::NamedBase.send :prepend, TemplatePrepend
