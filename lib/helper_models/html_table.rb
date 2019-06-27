@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HelperModel
+module HelperModels
   class HtmlTable
     attr_reader :heads, :columns
 

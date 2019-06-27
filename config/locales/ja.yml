@@ -12,6 +12,20 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
+  scaffold:
+    show: 表示
+    show_html: <i class="far fa-search"></i> 表示
+    edit: 編集
+    edit_html: <i class="far fa-edit"></i> 編集
+    destroy: 削除
+    destroy_html: <i class="far fa-trash-alt"></i> 削除
+    new_model: "新規%{model}作成"
+    editing_model: "%{model}編集"
+    model_list: "%{model}一覧"
+    destroy_confirm: 本当に削除してよろしいですか？
+    success_create: "%{model}を作成しました"
+    success_update: "%{model}を更新しました"
+    success_destroy: "%{model}を削除しました"
   application:
     global_nav:
       home: ホーム

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rails/generators'
+
 module AddFrozenStringLiteralComment
   def add_frozen_string_literal_comment(dist)
     return unless File.exist?(dist) && File.extname(dist) == '.rb'
@@ -33,6 +35,6 @@ module TemplatePrepend
   end
 end
 
-Rails::Generators::Migration # rubocop:disable Lint/Void
+Rails::Generators::Migration
 Rails::Generators::Actions::CreateMigration.send :prepend, GeneratorPrepend
 Rails::Generators::NamedBase.send :prepend, TemplatePrepend
