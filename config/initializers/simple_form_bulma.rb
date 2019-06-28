@@ -6,6 +6,8 @@ SimpleForm.setup do |config|
   config.error_notification_class = 'notification is-danger'
 
   config.wrappers :default, tag: 'div', class: 'field' do |b|
+    b.use      :html5
+    b.optional :pattern
     b.use      :placeholder
     b.optional :icon_left
     b.optional :icon_right
@@ -19,6 +21,8 @@ SimpleForm.setup do |config|
   end
 
   config.wrappers :horizontal, tag: 'div', class: 'field is-horizontal', error_class: 'is-danger' do |b|
+    b.use      :html5
+    b.optional :pattern
     b.use      :placeholder
     b.optional :icon_left
     b.optional :icon_right
@@ -79,8 +83,9 @@ SimpleForm.setup do |config|
       classes = %w[control]
       classes << 'has-icons-left' if icon_left
       classes << 'has-icons-right' if icon_right
+      input_html_classes.unshift class_with_shape('input')
       template.content_tag(:div, class: classes.join(' ')) do
-        template.concat super(options.merge(class: class_with_shape('input')))
+        template.concat super
         template.concat small_icon(icon_left, :left) if icon_left
         template.concat small_icon(icon_right, :right) if icon_left
       end
