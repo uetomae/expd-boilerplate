@@ -19,6 +19,10 @@ bundler-audit:
 brakeman:
 	@bundle exec brakeman -o /tmp/brakeman-report.html
 
+build:
+	@docker-compose build
+	@docker-compose run --rm web ./bin/yarn install
+
 prov-init:
 	@./expd-bin/generate-tfvars
 	@./expd-bin/generate-awscredentials

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HelperModel
+module HelperModels
   class HtmlMenuList
     attr_reader :items
 
