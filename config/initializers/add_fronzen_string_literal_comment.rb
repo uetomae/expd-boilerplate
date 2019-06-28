@@ -35,6 +35,6 @@ module TemplatePrepend
   end
 end
 
-Rails::Generators::Migration
+Rails::Generators::Migration # rubocop:disable Void
 Rails::Generators::Actions::CreateMigration.send :prepend, GeneratorPrepend
 Rails::Generators::NamedBase.send :prepend, TemplatePrepend
